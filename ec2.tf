@@ -12,6 +12,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
+  user_data     = file("scripts/bootstrap.sh")
 
   tags = {
     Name        = var.name
